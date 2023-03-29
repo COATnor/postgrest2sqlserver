@@ -6,6 +6,6 @@
 
 # Run
 
-Execute: `docker compose run --rm postgrest2sqlserver`
+Execute: `docker compose run --rm -i postgrest2sqlserver`
 
 If everything goes as expected, set `DELETE` to `true` to move the data instead of copying them.
