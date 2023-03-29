@@ -1,6 +1,7 @@
 version: "3"
 services:
   postgrest2sqlserver:
+    image: ghcr.io/ninanor/postgrest2sqlserver:main
     build: .
     command: "cat exported.tsv"
     #command:  bcp dbo.Table in exported.tsv -S servername -d databasename -U username -P password -c -F 2
