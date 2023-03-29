@@ -7,6 +7,12 @@ pk="$(curl --fail --silent \
     --header "Authorization: Bearer $CONSUMER_TOKEN" \
     --header "Accept: text/csv" | tail --lines=1)"
 
+# Empty table
+if [ ! -n "$pk" ]
+then
+    exit
+fi
+
 curl --fail --silent \
     "$URL?$PK_NAME=lte.$pk" \
     --header "Authorization: Bearer $CONSUMER_TOKEN" \
