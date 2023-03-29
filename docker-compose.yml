@@ -4,7 +4,7 @@ services:
     image: ghcr.io/ninanor/postgrest2sqlserver:main
     build: .
     command: "cat exported.tsv"
-    #command:  bcp dbo.Table in exported.tsv -S servername -d databasename -U username -P password -c -F 2
+    #command:  /opt/mssql-tools/bin/bcp dbo.Table in exported.tsv -S servername -d databasename -U username -P password -c -F 2
     environment:
       - URL
       - PK_NAME
