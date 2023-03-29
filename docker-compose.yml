@@ -2,8 +2,8 @@ version: "3"
 services:
   postgrest2sqlserver:
     build: .
-    command: "cat exported.csv"
-    #command: bcp dbo.Customers in exported.csv -S servername -d databasename -U username -P password -c -t ,
+    command: "cat exported.tsv"
+    #command:  bcp dbo.Table in exported.tsv -S servername -d databasename -U username -P password -c -F 2
     environment:
       - URL
       - PK_NAME

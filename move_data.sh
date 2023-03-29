@@ -10,8 +10,8 @@ pk="$(curl --fail --silent \
 curl --fail --silent \
     "$URL?$PK_NAME=lte.$pk" \
     --header "Authorization: Bearer $CONSUMER_TOKEN" \
-    --header "Accept: text/csv" \
-    --output "exported.csv"
+    --header "Accept: application/json" |
+     mlr --ijson --ocsv --ofs tab --quote-none cat > exported.tsv
 
 "$@"
 
