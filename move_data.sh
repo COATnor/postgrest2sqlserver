@@ -23,7 +23,7 @@ curl --fail --silent \
     --header "Authorization: Bearer $CONSUMER_TOKEN" \
     --header "Accept: application/json" |
      mlr --ijson --ocsv --ofs tab --quote-none cat |
-    awk -F$'\t' '{OFS=FS} { for (i=1; i<=NF; i++) $i=gensub(/^([0-9]{4}-[0-9]{2}-[0-9]{2})T([0-9]{2}:[0-9]{2}:[0-9]{2})([+-][0-9]{2}:[0-9]{2})$/, "\\1 \\2 \\3", "g", $i); print}' > exported.tsv
+    awk -F$'\t' '{OFS=FS} { print gensub(/([0-9]{4}-[0-9]{2}-[0-9]{2})T([0-9]{2}:[0-9]{2}:[0-9]{2})([+-][0-9]{2}:[0-9]{2})/, "\\1 \\2 \\3", "g") }' > exported.tsv
 
 # Run the command
 >&2 echo "Executing the program..."
