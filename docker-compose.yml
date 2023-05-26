@@ -9,4 +9,5 @@ services:
       - URL
       - PK_NAME
       - CONSUMER_TOKEN
+      - CONTENTPROFILE
       - DELETE

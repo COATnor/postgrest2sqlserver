@@ -6,6 +6,7 @@ set -Eeuo pipefail
 >&2 echo "Fetching the greatest primary key..."
 pk="$(curl --fail --silent \
     "$URL?select=$PK_NAME&order=$PK_NAME.desc&limit=1" \
+    --header "Accept-Profile: $CONTENTPROFILE" \
     --header "Authorization: Bearer $CONSUMER_TOKEN" \
     --header "Accept: text/csv" | tail --lines=1)"
 
@@ -20,6 +21,7 @@ fi
 >&2 echo "Fetching the data..."
 curl --fail --silent \
     "$URL?$PK_NAME=lte.$pk" \
+    --header "Accept-Profile: $CONTENTPROFILE" \
     --header "Authorization: Bearer $CONSUMER_TOKEN" \
     --header "Accept: application/json" |
      mlr --ijson --ocsv --ofs tab --quote-none cat |
@@ -36,6 +38,7 @@ then
     >&2 echo "Deleting the original data..."
     curl --fail --silent --request DELETE \
         "$URL?$PK_NAME=lte.$pk" \
+        --header "Content-Profile: $CONTENTPROFILE" \
         --header "Authorization: Bearer $CONSUMER_TOKEN"
     >&2 echo "Data deleted."
 fi
