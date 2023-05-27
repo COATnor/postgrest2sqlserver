@@ -24,7 +24,7 @@ curl --fail --silent \
     --header "Accept-Profile: $CONTENTPROFILE" \
     --header "Authorization: Bearer $CONSUMER_TOKEN" \
     --header "Accept: application/json" |
-     mlr --ijson --ocsv --ofs tab --quote-none cat |
+     mlr --ijson --ocsv --ofs tab --quote-none --ors $'\n' cat |
     awk -F$'\t' '{OFS=FS} { print gensub(/([0-9]{4}-[0-9]{2}-[0-9]{2})T([0-9]{2}:[0-9]{2}:[0-9]{2})([+-][0-9]{2}:[0-9]{2})/, "\\1 \\2 \\3", "g") }' > exported.tsv
 
 # Run the command
